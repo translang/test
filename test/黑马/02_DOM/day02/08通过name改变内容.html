@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" id="btn" value="点击改变内容"><br />
+<input type="text" value="喜欢你" name="name1"><br />
+<input type="text" value="喜欢你" name="name2"><br />
+<input type="text" value="喜欢你" name="name1"><br />
+<input type="text" value="喜欢你" name="name2"><br />
+<input type="text" value="喜欢你" name="name1"><br />
+<input type="text" value="喜欢你" name="name2"><br />
+<input type="text" value="喜欢你" name="name2">
+
+</body>
+<script>
+    var inputs=document.getElementsByName("name1");
+    $("btn").onclick=function(){
+        for(var i=0;i<inputs.length;i++){
+            inputs[i].value="我不喜欢你";
+        }
+
+    }
+
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>

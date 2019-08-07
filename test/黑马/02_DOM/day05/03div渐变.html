@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width:200px;
+            height:200px;
+            background-color:hotpink;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="渐变" id="btn">
+<div id="box">
+
+</div>
+</body>
+<script src="common.js"></script>
+<script>
+    $("btn").onclick=function(){
+        var opacity=10;
+        var timer=setInterval(function(){
+            opacity--;
+            if(opacity<=0){
+                clearInterval(timer);
+            }
+            $("box").style.opacity=opacity/10;
+        },100)
+    }
+</script>
+</html>

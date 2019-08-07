@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="box">
+    <span>我是span</span>
+    <p>我是p</p>
+        <ul id="ul">
+            <li>1</li>
+            <li>2</li>
+            <li id="three">3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</body>
+<script>
+    // //获取子节点
+    // console.log($("box").childNodes);
+    // //获取子元素
+    // console.log($("box").children);
+
+
+    //父节点
+    console.log($("ul").parentNode);
+    //父元素
+    console.log($("ul").parentElement);
+    //子节点
+    console.log($("ul").childNodes);
+    //子元素
+    console.log($("ul").children);
+    //第一个子节点
+    console.log($("ul").firstChild);
+    //第一个子元素
+    console.log($("ul").firstElementChild);
+    //最后一个子节点
+    console.log($("ul").lastChild);
+    //最后一个子元素
+    console.log($("ul").lastElementChild);
+    //某个元素的前一个兄弟节点
+    console.log($("three").previousSibling);
+    //某一个元素的前一个元素
+    console.log($("three").previousElementSibling);
+    //某一个元素的后一个节点
+    console.log($("three").nextSibling);
+    //某一个元素的后一个元素
+    console.log($("three").nextElementSibling);
+
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>

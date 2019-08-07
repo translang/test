@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="添加" id="btn">
+<div id="box">
+
+</div>
+</body>
+<script>
+    $("btn").onclick=function(){
+        if($("btn1")){
+            $("box").removeChild($("btn1"));
+        }
+        var input=document.createElement("input");
+
+        input.type="button";
+        input.value="按钮";
+        input.id="btn1";
+        ($("box").appendChild(input));
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>

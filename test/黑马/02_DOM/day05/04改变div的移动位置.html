@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #box{
+            position:absolute;
+            margin-top:10px;
+            width:200px;
+            height: 100px;
+            background-color:dodgerblue;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="移动400px" id="btn1">
+<input type="button" value="移动800px" id="btn2">
+<div id="box">
+
+</div>
+</body>
+<script src="common.js"></script>
+<script>
+    $("btn1").onclick=function(){
+        var timer=null;
+        var current=$("box").offsetLeft;
+        clearInterval(timer);
+        var step=10;
+        setInterval(function(){
+            current+=step;
+            if(current<=400){
+                $("box").style.left=current+"px";
+            }else{
+                clearInterval(timer);
+            }
+        },50)
+    }
+    $("btn2").onclick=function(){
+        var timer=null;
+        var current=$("box").offsetLeft;
+        clearInterval(timer);
+        var step=10;
+        setInterval(function(){
+            current+=step;
+            if(current<=800){
+                $("box").style.left=current+"px";
+            }else{
+                clearInterval(timer);
+            }
+        },50)
+    }
+</script>
+</html>

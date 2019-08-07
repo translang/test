@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            border:0;
+            list-style-type: none;
+        }
+        .all{
+            margin:100px auto;
+            width:500px;
+            height:200px;
+            border:1px gray solid;
+            padding:7px;
+        }
+        .inner{
+            position:relative;
+            overflow: hidden;
+            width:500px;
+            height:200px;
+        }
+        .inner ul{
+            position:absolute;
+            width:1000%;
+        }
+        .inner li{
+            float:left;
+        }
+        .inner .radius ul{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position:absolute;
+            bottom:20px;
+            left:45%;
+            width:80px;
+            height:13px;
+            border-radius: 10px;
+            background-color:rgba(255,255,255,0.5);
+
+        }
+        .inner .radius li{
+            width:10px;
+            height:10px;
+            cursor:pointer;
+            background-color:rgba(255,255,255,0.5);
+            border-radius: 50%;
+        }
+        .radius li.current{
+            background-color: orangered;
+        }
+        #btn{
+            display: none;
+        }
+        #btn span{
+            cursor: pointer;
+            position:absolute;
+            top:46%;
+            display: inline-block;
+            width:40px;
+            height:40px;
+            font-size:40px;
+            line-height: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        #btn #left{
+            flaot:left;
+        }
+        #btn #right{
+            right:0;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box" class="all">
+        <div class="inner">
+            <ul>
+                <li><a href="#"><img src="images/1.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/2.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/3.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/4.jpg" alt=""></a></li>
+                <li><a href="#"><img src="images/5.jpg" alt=""></a></li>
+            </ul>
+            <div class="radius">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div id="btn">
+                <span id="left">&lt;</span>
+                <span id="right">&gt;</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    //最外面box
+    var box=$("box");
+    //box 下面的inner 相框
+    var inner=box.children[0];
+    //获取相框的长度
+    var imgWidth=inner.offsetWidth;
+    var ulObj=inner.children[0];
+    var list=ulObj.children;
+    var radius=box.children[0].children[1].children[0].children;
+    var btn=$("btn");
+    var index=0;
+    for(var i=0;i<radius.length;i++){
+        radius[i].index=i;
+        radius[i].onmouseover=function(){
+            for(var j=0;j<radius.length;j++){
+                radius[j].className="";
+                list[j].style.marginLeft=0+"px";
+            }
+            this.className="current";
+            index=this.index;
+            animate(ulObj,imgWidth*-index);
+        }
+    }
+    var timer=setInterval(overHandle,1000);
+    radius[0].className="current";
+    ulObj.appendChild(list[0].cloneNode(true));
+    $("right").onclick=overHandle;
+        function overHandle(){
+        if(index==list.length-1){
+            index=0;
+            ulObj.style.marginLeft=0+"px";
+        }
+        index++;
+        animate(ulObj,imgWidth*-index);
+        if(index==list.length-1){
+            radius[radius.length-1].className="";
+            radius[0].className="current";
+
+        }else{
+            for(var i=0;i<radius.length;i++){
+                radius[i].className="";
+            }
+            radius[index].className="current";
+        }
+    }
+    $("left").onclick= function(){
+        if(index==0){
+            index=5;
+            ulObj.style.marginRight=-index*imgWidth+"px";
+        }
+        index--;
+        animate(ulObj,imgWidth*-index);
+        for(var i=0;i<radius.length;i++){
+            radius[i].className="";
+        }
+        radius[index].className="current";
+    }
+    box.onmouseover=function(){
+        clearInterval(timer);
+        btn.style.display="block";
+
+    }
+    box.onmouseout=function(){
+        timer=setInterval(overHandle,1000);
+        btn.style.display="";
+
+
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+    function animate(ele,target){
+        clearInterval(ele.timeId)
+        ele.timeId=setInterval(function(){
+            var current=ele.offsetLeft;
+            var step=10;
+            step=current<target?step:-step;
+            current+=step;
+            if(Math.abs(target-current)>Math.abs(step)){
+                ele.style.marginLeft=current+"px";
+            }else{
+                clearInterval(ele.timeId);
+                ele.style.marginLeft=target+"px";
+            }
+
+        },1)
+    }
+</script>
+</html>

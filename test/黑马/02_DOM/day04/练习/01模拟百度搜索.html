@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            position:relative;
+            margin:auto;
+            width:1000px;
+            height:500px;
+            border:1px solid rgba(255, 0, 0, 0.13);
+        }
+        #box #txt{
+            position:absolute;
+            left:300px;
+            top:45%;
+            width:300px;
+            height:25px;
+        }
+        #box #btn{
+            position:absolute;
+            left:610px;
+            top:45%;
+            width:50px;
+            height:30px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" id="txt">
+    <input type="button" value="搜索" id="btn">
+</div>
+</body>
+<script>
+    $("txt").onkeyup=function(){
+        if($("box1")){
+            $("box").removeChild($("box1"));
+        }
+        var keyWords=["你没得资格","你要怎样","你是我的","你也不是我的","我会好的","我的资格证书"];
+        var text=this.value;
+        var keyTemp=[];
+        for(var i=0;i<keyWords.length;i++){
+            if(keyWords[i].indexOf(text)==0){
+                keyTemp.push(keyWords[i]);
+            }
+        }
+        if(this.value.length==0||keyTemp[i]==0){
+            if($("box1")){
+                $("box").removeChild($("box1"));
+            }
+            return ;
+        }
+        var div=document.createElement("div");
+        div.id="box1";
+        $("box").appendChild(div);
+        div.style.position="absolute";
+        div.style.left="300px";
+        div.style.top="51%";
+        div.style.width="303px";
+        div.style.cursor="pointer";
+        div.style.border="1px solid gray";
+        for(var j=0;j<keyTemp.length;j++){
+            var span=document.createElement("p");
+            $("box1").appendChild(span);
+            span.innerText=keyTemp[j];
+            span.style.display="block";
+            span.style.padding="0";
+            span.style.margin="0";
+            span.style.marginBottom="5px";
+
+            span.onmouseover=mouseover;
+            span.onmouseout=mouseout;
+        }
+        function mouseover(){
+            this.style.backgroundColor="rgba(255, 0, 0, 0.13)";
+        }
+        function mouseout(){
+            this.style.backgroundColor="";
+        }
+
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>

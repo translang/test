@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--阻止超链接跳转的第一种写法-->
+<a href="http://www.baidu.com" onclick="return f1()">百度</a>
+<script>
+    function f1(){
+        alert("你上当了");
+        return false;
+    }
+</script>
+<!--阻止超链接跳转的第二种写法-->
+<a href="http://www.baidu.com" id="link">baidu</a>
+<script>
+    document.getElementById("link").onclick=function(){
+        alert("想跳转，不可能！！！");
+        /*
+        阻止超链接跳转 return false;
+         */
+        return false;
+    }
+</script>
+</body>
+</html>

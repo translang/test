@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style-type: none;
+        }
+        body{
+            background-color: #333;
+        }
+        .nav{
+            position:relative;
+            margin:250px auto;
+            width:1000px;
+            height:45px;
+            border-radius:10px;
+            background: url(images/rss.png) right center no-repeat;
+            background-color:white;
+        }
+        .nav li{
+            width:105px;
+            height:45px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 45px;
+            float:left;
+        }
+        ul {
+            position: relative;
+        }
+        .nav span{
+            position:absolute;
+            top: 0;
+            left: 0;
+            width: 105px;
+            height: 45px;
+            background: url(images/cloud.gif) no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <span id="cloud"></span>
+        <ul id="navBar">
+            <li>北京校区</li>
+            <li>上海校区</li>
+            <li>广州校区</li>
+            <li>深圳校区</li>
+            <li>武汉校区</li>
+            <li>关于我们</li>
+            <li>联系我们</li>
+            <li>招贤纳士</li>
+        </ul>
+    </div>
+</body>
+<script>
+    var cloud=$("cloud");
+    var navBar=$("navBar").children;
+    for(var i=0;i<navBar.length;i++){
+
+        navBar[i].onmouseover=function(){
+            animate(cloud,this.offsetLeft);
+        }
+        var index=0;
+        navBar[i].onclick=function(){
+            index=this.offsetLeft;
+        }
+        navBar[i].onmouseout=function(){
+            animate(cloud,index);
+        }
+    }
+    function animate(ele,target){
+        clearInterval(ele.timer);
+        ele.timer=setInterval(function(){
+            var current=ele.offsetLeft;
+            var step=(target-current)/10;
+            step=step>0?Math.ceil(step):Math.floor(step);
+            current+=step;
+            ele.style.marginLeft = current + "px";
+            if(current==this.offsetLeft){
+                clearInterval(ele.timer);
+            }
+        },10)
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>

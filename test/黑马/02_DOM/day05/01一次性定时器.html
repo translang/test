@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="stop">停下</button>
+</body>
+<script>
+    timer=setTimeout(function(){
+        alert("一次性定时器");
+    })
+    document.getElementById("stop").onclick=function(){
+        console.log(clearTimeout(timer));
+    }
+</script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+
+        }
+        #box{
+            margin:100px auto;
+            width:1000px;
+            height:100%;
+            border:1px solid red;
+        }
+        #wrap{
+            margin-left:50px;
+            padding-bottom:30px;
+        }
+        #wrap p{
+            height:30px;
+            margin-top:20px;
+        }
+        #area{
+            width:60%;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="wrap">
+        <p>发表评论：</p>
+        <textarea name="" id="area" cols="80" rows="10"></textarea><br />
+        <button id="btn">发表</button>
+        <ul id="ul">
+
+        </ul>
+    </div>
+</div>
+</body>
+<script>
+    $("btn").addEventListener("click",f1,false);
+    function f1(){
+
+        var val=$("area").value;
+        if(val.length==0){
+            alert("对不起，你发表的内容为空");
+            return;
+        }
+
+        var li=document.createElement("li");
+        li.innerText=val;
+        const count=0;
+        $("ul").insertBefore(li,$("ul").children[li[0]]);
+        li.style.display="inline-block";
+        li.style.width="60%";
+        li.style.height="30px";
+        li.style.lineHight="30px";
+        li.style.borderBottom="1px dashed gray";
+        var aObj=document.createElement("a");
+        aObj.innerText="删除";
+        aObj.href="javascript:;";
+        $("ul").append(aObj);
+        $("area").value=null;
+        var a=$("ul").getElementsByTagName("a");
+       for(var i=0;i<a.length;i++){
+           a[i].onclick=function(){
+               this.parentNode.remove();
+
+           }
+       }
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        #box {
+            width: 200px;
+            height: 100px;
+            background-color: darkmagenta;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="移动400px" id="btn1">
+<input type="button" value="移动400px" id="btn2">
+<div id="box">
+
+</div>
+</body>
+<script>
+    $("btn1").onclick = function () {
+        animate($("box"),400);
+    }
+    $("btn2").onclick = function () {
+        animate($("box"),800);
+    }
+
+    function animate(ele,target) {
+        clearInterval(ele.timer);
+        ele.timer=setInterval(function () {
+            var current = ele.offsetLeft;
+            var step = 10;
+            step = current < target ? step : -step;
+            current += step;
+            if (Math.abs(target - current) > Math.abs(step)) {
+                ele.style.marginLeft = current + "px";
+            } else {
+                clearInterval(ele.timer);
+                $("box").style.marginLeft = target + "px";
+            }
+        }, 10)
+    }
+
+    function $(id) {
+        return document.getElementById(id);
+    }
+</script>
+</html>

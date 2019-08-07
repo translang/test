@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" id="btn" value="添加">
+<div id="box">
+    <table id="table" border="1" cellpadding="0" cellspacing="0">
+
+    </table>
+</div>
+</body>
+<script>
+    var arr=[
+        {name:"百度",href:"http://www.baidu.com"},
+        {name:"优酷",href:"http://www.youku.com"},
+        {name:"快播",href:"http://www.kuaibo.com"},
+        {name:"爱奇艺",href:"http://www.aqiyi.com"},
+        {name:"腾讯视频",href:"http://www.v.QQ.com"},
+        {name:"阿里",href:"http://www.ali.com"}
+    ];
+    $("btn").onclick=function(){
+    for(var i=0;i<arr.length;i++){
+        var tr=document.createElement("tr");
+        var td=arr[i];
+        $("table").appendChild(tr);
+        var tdObj=document.createElement("td");
+        tdObj.innerText=td.name;
+        tr.appendChild(tdObj);
+        var tdObj1=document.createElement("td");
+        tdObj1.innerHTML="<a href="+td.href+">"+td.name+"</a>"
+        tr.appendChild(tdObj1);
+    }
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>

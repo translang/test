@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            position:relative;
+            margin:auto;
+            width:1000px;
+            height:500px;
+        }
+        #box #sear{
+            position:absolute;
+            left:350px;
+            top:45%;
+            width:300px;
+            height:25px;
+        }
+
+        #box #btn{
+            position:absolute;
+            left:663px;
+            top:45%;
+            height:30px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="box">
+    <input type="text" id="sear">
+    <input type="button" value="搜索" id="btn">
+</div>
+</body>
+<script>
+    var arr=["我喜欢你","你也是我的最爱","我们只是俗世的一个凡人","生活充满了一些正能量",
+        "你能否找到我","深情不忘，我们的jia"];
+    $("sear").onkeyup=function(){
+        if($("dv")){
+            $("box").removeChild($("dv"));
+        }
+        var text=this.value;
+        var arrTemp=[];
+        for(var i=0;i<arr.length;i++){
+            if(arr[i].indexOf(text)==0){
+                arrTemp.push(arr[i]);
+            }
+        }
+        if(this.value.length==0||arrTemp.length==0){
+            if($("dv")){
+                $("box").removeChild($("dv"));
+            }
+            return ;
+        }
+        var box=document.createElement("div");
+        box.id="dv";
+        var sr= $("box").appendChild(box);
+        box.style.position="absolute";
+        box.style.top="51%";
+        box.style.left="350px";
+        box.style.width="301px";
+
+        box.style.border="1px solid gray";
+        for(var j=0;j<arrTemp.length;j++){
+            var p=document.createElement("span");
+            p.innerText=arrTemp[j];
+            $("dv").appendChild(p);
+            p.style.display="block";
+            p.style.cursor="pointer";
+            p.style.height="25px";
+            p.style.lineHeight="25px";
+            p.onmouseover=mouseover;
+            p.onmouseout=mouseout;
+        }
+
+    }
+    function mouseover(){
+        this.style.backgroundColor="rgba(255, 75, 174, 0.11)";
+    }
+    function mouseout(){
+        this.style.backgroundColor="";
+    }
+    function $(id){
+        return typeof id=="string"?document.getElementById(id):document.getElementsByTagName(id);
+    }
+</script>
+</html>

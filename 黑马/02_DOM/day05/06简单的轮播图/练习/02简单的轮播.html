@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style-type: none;
+        }
+
+
+        #box {
+            margin: 100px auto;
+            width: 730px;
+            height: 454px;
+            border: 1px solid gray;
+
+        }
+
+        .inner {
+            position: relative;
+            width: 730px;
+            height: 454px;
+            overflow: hidden;
+        }
+
+        .inner ul {
+            position: absolute;
+            width: 1000%;
+            left: 0;
+            top: 0;
+        }
+
+        .inner li {
+            float: left;
+        }
+
+        .radius {
+            position: absolute;
+            bottom: 80px;
+            left: 46%;
+
+        }
+
+        .radius ul {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100px;
+            height: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .radius li {
+
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            background-color: white;
+        }
+
+        .radius .current {
+            background-color: orangered;
+        }
+
+        #btn {
+            display: none;
+        }
+
+        #btn span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+
+        #btn #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div class="inner">
+        <ul>
+            <li><a href="#"><img src="../images/1.jpg" alt=""></a></li>
+            <li><a href="#"><img src="../images/2.jpg" alt=""></a></li>
+            <li><a href="#"><img src="../images/3.jpg" alt=""></a></li>
+            <li><a href="#"><img src="../images/4.jpg" alt=""></a></li>
+            <li><a href="#"><img src="../images/5.jpg" alt=""></a></li>
+        </ul>
+        <div class="radius">
+            <ul>
+                <li class="current"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div id="btn">
+            <span id="left">&lt;</span>
+            <span id="right">&gt;</span>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../common.js"></script>
+<script>
+
+    var box = $("box");
+    var inner = box.children[0];
+    var imgWidth = inner.offsetWidth;
+    var ulObj = inner.children[0];
+    var list = ulObj.children;
+    var radius = inner.children[1].children[0].children;
+    var index = 0;
+    for (var i = 0; i < radius.length; i++) {
+        radius[i].index = i;
+        radius[i].onmouseover = function () {
+            for (var j = 0; j < radius.length; j++) {
+                radius[j].className = "";
+                list[j].style.marginLeft = 0 + "px";
+            }
+            this.className = "current";
+            index = this.index;
+            animate(ulObj, -index * imgWidth);
+        }
+
+    }
+    var timer=setInterval(inetervalHandle,1000);
+    ulObj.appendChild(ulObj.children[0].cloneNode(true));
+
+    $("box").onmouseover = function () {
+        clearInterval(timer);
+        $("btn").style.display = "block";
+    }
+    $("box").onmouseout = function () {
+        timer=setInterval(inetervalHandle,1000);
+        $("btn").style.display = "none";
+    }
+    $("right").onclick = inetervalHandle;
+    function inetervalHandle() {
+        if (index == list.length - 1) {
+            index = 0;
+            ulObj.style.marginLeft = 0 + "px";
+        }
+        index++;
+        animate(ulObj, -index * imgWidth)
+        if (index == list.length - 1) {
+            radius[radius.length - 1].className = "";
+            radius[0].className = "current";
+        } else {
+            for (var i = 0; i < radius.length; i++) {
+                radius[i].className = "";
+            }
+            radius[index].className = "current";
+        }
+
+    }
+    $("left").onclick=function(){
+        if(index==0){
+            index=5
+            ulObj.style.marginLeft=-index*imgWidth+"px";
+
+        }
+        index--;
+        animate(ulObj,-index*imgWidth);
+        for(var i=0;i<radius.length;i++){
+            radius[i].className="";
+        }
+        radius[index].className="current";
+    }
+
+    function $(id) {
+        return document.getElementById(id);
+    }
+</script>
+</html>

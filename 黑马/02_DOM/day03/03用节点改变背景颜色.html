@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">变色</button>
+<div id="box">
+    <span>我是span</span>
+    <p>我是P</p>
+    <span>我是span</span>
+    <p>我是P</p>
+    <span>我是span</span>
+    <p>我是P</p>
+    <span>我是span</span>
+    <span>我是span</span>
+    <p>我是P</p>
+</div>
+</body>
+<script>
+    $("btn").onclick=function(){
+        var pObj=$("box").childNodes;
+        for(var i=0;i<pObj.length;i++){
+            if(pObj[i].nodeType==1 && pObj[i].nodeName=="P"){
+                pObj[i].style.backgroundColor="red";
+            }
+        }
+
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="显示" id="btn">
+</body>
+<script>
+    $("btn").onclick=f1;
+    $("btn").onmouseover=f1;
+    $("btn").onmouseout=f1;
+    function f1(e){
+        switch(e.type){
+            case "click":alert("哈哈"); break;
+            case "mouseover":this.style.backgroundColor="red";break;
+            case"mouseout":this.style.backgroundColor="";break;
+        }
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>

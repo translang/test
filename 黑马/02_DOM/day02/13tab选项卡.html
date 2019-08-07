@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            list-style: none;
+            margin:0;
+            padding:0;
+            border:0;
+        }
+        #box{
+            margin:100px auto;
+            width:500px;
+            height:300px;
+            border:1px solid gray;
+        }
+        #ul{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding-bottom: 3px;
+            border-bottom:1px gray dashed;
+        }
+        #ul li{
+            width:100px;
+            height: 35px;
+            cursor:pointer;
+            text-align:center;
+            line-height: 35px;
+            background-color: rgba(145, 140, 140, 0.3);
+        }
+        #ul li:first-child{
+            border-left:0;
+        }
+        #ul li:last-child{
+            border-right:0;
+        }
+        #ul  .wrap{
+            border-left:1px gray solid;
+            border-right:1px gray solid;
+            background-color:white !important;
+        }
+        .content{
+            margin-top:20px;
+            display:none;
+        }
+        .content ul {
+            display: flex;
+            justify-content: space-around;
+            align-items:center;
+        }
+        .content ul li{
+
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul id="ul">
+            <li class="wrap">阿里</li>
+            <li>腾讯</li>
+            <li>百度</li>
+            <li>京东</li>
+            <li>天翼</li>
+        </ul>
+        <div class="content">
+            <ul>
+                <li>阿里欢迎你</li>
+                <li>阿里欢迎你</li>
+                <li>阿里欢迎你</li>
+                <li>阿里欢迎你</li>
+            </ul>
+        </div>
+        <div class="content">
+            <ul>
+                <li>腾讯欢迎你</li>
+                <li>腾讯欢迎你</li>
+                <li>腾讯欢迎你</li>
+                <li>腾讯欢迎你</li>
+            </ul>
+        </div>
+        <div class="content">
+            <ul>
+                <li>百度欢迎你</li>
+                <li>百度欢迎你</li>
+                <li>百度欢迎你</li>
+                <li>百度欢迎你</li>
+            </ul>
+        </div>
+        <div class="content">
+            <ul>
+                <li>京东欢迎你</li>
+                <li>京东欢迎你</li>
+                <li>京东欢迎你</li>
+                <li>京东欢迎你</li>
+            </ul>
+        </div>
+        <div class="content">
+            <ul>
+                <li>天翼欢迎你</li>
+                <li>天翼欢迎你</li>
+                <li>天翼欢迎你</li>
+                <li>天翼欢迎你</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    var list=document.getElementById("ul").getElementsByTagName("li");
+    var content=document.getElementsByClassName("content");
+    content[0].style.display="block";
+    for(var i=0;i<list.length;i++){
+    var lists=list[i];
+    lists.index=i;
+        lists.onmouseover=function(){
+            for(var j=0;j<list.length;j++){
+                list[j].className="";
+                content[j].style.display="";
+            }
+            this.className="wrap";
+            content[this.index].style.display="block";
+        }
+
+    }
+</script>
+</html>

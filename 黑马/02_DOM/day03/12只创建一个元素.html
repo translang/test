@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width:200px;
+            height:200px;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="显示效果" id="btn">
+<div id="box">
+
+</div>
+</body>
+<script>
+    //有则删除，无则创建
+    $("btn").onclick=function(){
+        if($("btn1")){
+            $("box").removeChild();
+        }
+        var input=document.createElement("input");
+        input.type="button";
+        input.value="按钮";
+        input.id="btn1"
+        $("box").appendChild(input);
+    }
+    function $(id){
+        return typeof id=="string"?document.getElementById(id):"";
+    }
+</script>
+</html>

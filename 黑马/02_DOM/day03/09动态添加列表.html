@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width:250px;
+            height:200px;
+            border:3px orangered dotted;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="添加" id="btn">
+    <div id="box">
+        <ul id="ul">
+
+        </ul>
+    </div>
+</body>
+<script>
+    $("btn").onclick=function(){
+        var li=document.createElement("li");
+        var arr=["葵花宝典","辟邪剑法","九阴真经","九阳真经","降龙十八掌","精舍剑法","玉女心经"];
+        var random=parseInt(Math.random()*arr.length);
+
+
+        li.innerText=arr[random];
+        $("ul").appendChild(li);
+    }
+
+
+    function $(id){
+        return typeof id=="string"?document.getElementById(id):"";
+    }
+</script>
+</html>

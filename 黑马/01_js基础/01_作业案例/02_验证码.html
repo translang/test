@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #box{
+            margin:100px auto;
+            width:200px;
+            height:50px;
+            font-size:30px;
+            line-height:50px;
+            border:1px black solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">45jk</div>
+</body>
+<script>
+    var box=document.getElementById('box');
+    var arr=[];
+    var str="";
+        for(var i=0;i<123;i++){
+            if(i>=48&&i<=57){
+                arr.push(String.fromCharCode(i));
+            }
+            if(i>=65&&i<=90){
+                arr.push(String.fromCharCode(i));
+            }
+            if(i>=97&&i<=122) {
+                arr.push(String.fromCharCode(i));
+            }
+
+        }
+    for(var n=0;n<4;n++){
+        var random=parseInt(Math.random()*62);
+        random=arr[random];
+        str+=random;
+    }
+    box.innerText=str;
+</script>
+</html>

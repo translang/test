@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width:300px;
+            height:200px;
+            background-color: #6441ff;
+        }
+        .cls{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<input type="button" id="btn" value="隐藏">
+<div id="box"></div>
+</body>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    $("btn").onclick=function(){
+        if($("box").className=="cls"){
+            $("box").className="";
+            this.value="显示";
+        }else{
+            $("box").className="cls";
+            this.value="隐藏";
+        }
+    }
+</script>
+</html>

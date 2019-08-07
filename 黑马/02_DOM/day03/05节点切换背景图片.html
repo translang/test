@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            border:0;
+        }
+        body{
+            background-size: cover;
+            background:url("images/1.jpg") no-repeat center/100%;
+        }
+        #box{
+            display: flex;
+            justify-content: space-around;
+            align-items:center;
+            margin:auto;
+            width:1000px;
+            height:500px;
+            cursor:pointer;
+
+        }
+        #box img{
+            background-color: rgba(123, 188, 255, 0.04);
+            margin-top:-350px;
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img src="images/1.jpg" alt="">
+        <img src="images/2.jpg" alt="">
+        <img src="images/3.jpg" alt="">
+    </div>
+</body>
+<script>
+    var box=$("box").children;
+    for(var i=0;i<box.length;i++){
+        box[i].onclick=function(){
+            document.body.style.background="url("+this.src+") no-repeat center/100%";
+        }
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>

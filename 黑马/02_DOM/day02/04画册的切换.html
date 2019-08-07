@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            border:0;
+        }
+        #box{
+            margin:0 auto;
+            width:500px;
+            height: 380px;
+        }
+        #ul{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        li{
+            list-style:none;
+
+        }
+        #ul img{
+            width:90px;
+
+        }
+        #img{
+            width:500px;
+            height:290px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="box">
+    <ul id="ul">
+        <li><a href="images/1.jpg" title="美女A"><img src="images/1-small.jpg" alt=""></a></li>
+        <li><a href="images/2.jpg" title="美女B"><img src="images/2-small.jpg" alt=""></a></li>
+        <li><a href="images/3.jpg" title="美女C"><img src="images/3-small.jpg" alt=""></a></li>
+        <li><a href="images/4.jpg" title="美女D"><img src="images/4-small.jpg" alt=""></a></li>
+        <li><a href="images/5.jpg" title="美女E"><img src="images/5-small.jpg" alt=""></a></li>
+    </ul>
+    <img src="images/placeholder.png" alt="" id="img">
+    <p id="p1">选择一个图片</p>
+</div>
+
+</body>
+<script>
+    var aObjs=$("ul").getElementsByTagName("a");
+    for(var i=0;i<aObjs.length;i++){
+        var index=aObjs[i];
+        index.onclick=function(){
+            $("img").src=this.href;
+            $("p1").innerText=this.title;
+            return false;
+        }
+    }
+    function $(id){
+        return document.getElementById(id);
+    }
+</script>
+</html>
